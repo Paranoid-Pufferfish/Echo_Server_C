@@ -43,6 +43,8 @@ int main(void) {
     char msg[50] = {0};
     recv(newfd,msg,1024,0);
     printf("Received : %s\n",msg);
+    char *msg2 = "Pong\0";
+    send(newfd,msg2,strlen(msg2),0);
     close(newfd);
     close(socketfd);
     return 0;

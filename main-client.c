@@ -26,11 +26,13 @@ int main(void) {
         perror("connect");
         exit(1);
     }
-    char *msg = "Hello World!\0";
+    char *msg = "Ping\0";
     if (send(socketfd, msg, strlen(msg), 0) == -1) {
         perror("send");
         exit(1);
     }
-    printf("Sent : %s\n",msg);
+    char msg2[50] = {0};
+    recv(socketfd,msg2,1024,0);
+    printf("Received: %s\n",msg2);
     return 0;
 }
