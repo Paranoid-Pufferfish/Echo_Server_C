@@ -31,6 +31,6 @@ int main(void) {
         perror("send");
         exit(1);
     }
-    printf("Sent : %s",msg);
+    printf("Sent : %s\n",msg);
     return 0;
 }

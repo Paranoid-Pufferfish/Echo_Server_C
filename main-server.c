@@ -42,7 +42,7 @@ int main(void) {
     }
     char msg[50] = {0};
     recv(newfd,msg,1024,0);
-    printf("Received : %s",msg);
+    printf("Received : %s\n",msg);
     close(newfd);
     close(socketfd);
     return 0;
