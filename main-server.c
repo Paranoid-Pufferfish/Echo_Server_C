@@ -40,11 +40,16 @@ int main(void) {
         perror("accept");
         exit(1);
     }
-    char msg[50] = {0};
-    recv(newfd,msg,1024,0);
-    printf("Received : %s\n",msg);
-    char *msg2 = "Pong\0";
-    send(newfd,msg2,strlen(msg2),0);
+    for (;;) {
+        char msg[100] = {0};
+        recv(newfd,msg,100,0);
+        char msg2[100] = {0};
+        sprintf(msg2,"Received : %sSent: Pong\n",msg);
+        if (send(newfd,msg2,strlen(msg2),MSG_NOSIGNAL) == -1) {
+            break;
+        }
+    }
+    printf("Closing Connection");
     close(newfd);
     close(socketfd);
     return 0;
